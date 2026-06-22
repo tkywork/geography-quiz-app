@@ -39,6 +39,10 @@ quiz-app/
 - スコア表示：全問終了後に正答数／総問題数を表示
 - リトライ：終了後に最初からやり直せる
 
+## GitHubリポジトリ
+
+https://github.com/tkywork/geography-quiz-app
+
 ## 動作確認方法
 
 ```
