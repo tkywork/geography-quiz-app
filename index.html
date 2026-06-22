@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一般常識クイズ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- スタート画面 -->
+    <div id="start-screen" class="screen">
+      <div class="icon">&#x1F4DA;</div>
+      <h1>一般常識クイズ</h1>
+      <p class="subtitle">全5問・4択形式</p>
+      <button id="start-btn" class="btn">スタート</button>
+      <div id="weather" class="weather-widget">
+        <span class="weather-loading">天気を取得中…</span>
+      </div>
+    </div>
+
+    <!-- クイズ画面 -->
+    <div id="quiz-screen" class="screen hidden">
+      <div class="progress-header">
+        <span id="question-number">1 / 5</span>
+        <div class="timer-wrap">
+          <svg class="timer-svg" viewBox="0 0 60 60">
+            <circle class="timer-bg" cx="30" cy="30" r="26"/>
+            <circle id="timer-ring" class="timer-ring" cx="30" cy="30" r="26"/>
+          </svg>
+          <span id="timer-count">30</span>
+        </div>
+        <span id="score-counter">スコア: 0</span>
+      </div>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+
+      <p id="question-text" class="question-text"></p>
+
+      <div id="choices" class="choices"></div>
+
+      <div id="feedback" class="feedback hidden"></div>
+
+      <button id="next-btn" class="btn hidden">次の問題へ</button>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="result-screen" class="screen hidden">
+      <div id="result-icon" class="icon"></div>
+      <h2>クイズ終了！</h2>
+      <div class="score-display">
+        <span id="score-fraction"></span>
+        <span class="score-label">正解</span>
+      </div>
+      <p id="score-message" class="score-message"></p>
+      <button id="retry-btn" class="btn">もう一度挑戦する</button>
+    </div>
+
+  </div>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

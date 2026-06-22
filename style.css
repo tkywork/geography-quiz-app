@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 580px;
+}
+
+/* --- 共通スクリーン --- */
+.screen {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 36px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- スタート画面 --- */
+.icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 1.9rem;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #718096;
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+}
+
+/* --- 天気ウィジェット --- */
+.weather-widget {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  flex-wrap: wrap;
+}
+
+.weather-location {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: -6px;
+}
+
+.weather-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.weather-desc {
+  font-size: 0.95rem;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.weather-temps {
+  display: flex;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.temp-min { color: #3182ce; }
+.temp-max { color: #e53e3e; }
+
+.weather-loading,
+.weather-error {
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+/* --- プログレス --- */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+/* --- タイマー --- */
+.timer-wrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.timer-svg {
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+
+.timer-bg {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 4;
+}
+
+.timer-ring {
+  fill: none;
+  stroke: #4299e1;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 163.36;
+  stroke-dashoffset: 0;
+}
+
+#timer-count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4a5568;
+  transition: color 0.3s;
+  line-height: 1;
+}
+
+#timer-count.danger {
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4299e1, #63b3ed);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* --- 問題 --- */
+.question-text {
+  font-size: 1.15rem;
+  color: #2d3748;
+  font-weight: 700;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* --- 選択肢 --- */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.choice-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.97rem;
+  color: #4a5568;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.18s, background 0.18s, color 0.18s;
+  font-family: inherit;
+}
+
+.choice-btn:hover:not(:disabled) {
+  border-color: #4299e1;
+  background: #ebf8ff;
+  color: #2b6cb0;
+}
+
+.choice-btn.correct {
+  border-color: #48bb78;
+  background: #f0fff4;
+  color: #22543d;
+  font-weight: 600;
+}
+
+.choice-btn.incorrect {
+  border-color: #fc8181;
+  background: #fff5f5;
+  color: #742a2a;
+}
+
+.choice-btn:disabled {
+  cursor: default;
+}
+
+/* --- フィードバック --- */
+.feedback {
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.feedback.correct {
+  background: #f0fff4;
+  color: #22543d;
+  border-left: 4px solid #48bb78;
+}
+
+.feedback.incorrect {
+  background: #fff5f5;
+  color: #742a2a;
+  border-left: 4px solid #fc8181;
+}
+
+.feedback-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* --- 結果画面 --- */
+h2 {
+  font-size: 1.7rem;
+  color: #2d3748;
+  margin-bottom: 24px;
+}
+
+.score-display {
+  margin-bottom: 16px;
+}
+
+#score-fraction {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #4299e1;
+}
+
+.score-label {
+  font-size: 1.1rem;
+  color: #718096;
+  margin-left: 6px;
+}
+
+.score-message {
+  color: #718096;
+  font-size: 1rem;
+  margin-bottom: 36px;
+}
+
+/* --- ボタン --- */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: #4299e1;
+  color: #fff;
+  transition: background 0.18s, transform 0.1s;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+}
+
+.btn:hover {
+  background: #3182ce;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
